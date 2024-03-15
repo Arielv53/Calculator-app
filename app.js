@@ -1,29 +1,18 @@
-const Numbers=document.querySelectorAll('#number');
-const Operations=document.querySelectorAll('#operation');
-const Display=document.querySelector('#total');
+const display = document.getElementById("display");
 
-Numbers.forEach((number)=>{
-    number.addEventListener('click',()=>{
-        if (Display.value==0) {
-            Display.value=number.innerHTML;
-        } else {
-            Display.value+=number.innerHTML;
-        };
-    });
-});
-Operations.forEach((Operation)=>{
-    Operation.addEventListener('click',()=>{
-        if (Display.value!=='0') {
-            Display.value+=Operation.innerHTML;
-        };
-    });
-});
+function appendToDisplay(input){
+    display.value += input;
+}
 
-function calculate() {
-    const Cal=eval(Display.value);
-    Display.value=Cal;
-};
+function clearDisplay(){
+    display.value = "";
+}
 
-function Clear() {
-    Display.value='0';
-};
+function calculate(){
+    try{
+        display.value = eval(display.value);
+    }
+    catch(error){
+        display.value = "Error";
+    }
+}
